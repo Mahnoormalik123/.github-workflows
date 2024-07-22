@@ -1,0 +1,25 @@
+name: LeetCode Stats
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Generate LeetCode Stats
+        uses: leetcode-tools/leetcode-stats-action@v1
+        with:
+          username: mahnoor1515271__
+          theme: dark
+
+      - name: Commit and push changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: 'leetcode-stats-card.svg'
+          message: 'Update LeetCode stats'
